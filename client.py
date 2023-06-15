@@ -3,6 +3,7 @@ import socket
 import pickle
 import struct
 
+
 # Create a socket object
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 host_ip = '0.0.0.0'  # Replace with the server IP address
