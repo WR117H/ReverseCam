@@ -2,6 +2,7 @@ import cv2
 import socket
 import pickle
 import struct
+from module import banner
 
 # Create a socket object
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
