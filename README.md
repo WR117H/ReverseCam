@@ -12,7 +12,8 @@ Then head to the folder and install the requirements using pip
 ```
 pip install -r requirements.txt
 ```
-Then just run it
+Change the client's file addresses to whatever you want
+
 
 # Args
 | Argument | Useage |
