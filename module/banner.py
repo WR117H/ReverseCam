@@ -1,3 +1,4 @@
+from colorama import Fore
 def ban():
   ascii=f"""
   
@@ -12,4 +13,4 @@ def ban():
    ░        ░  ░     ░     ░  ░   ░           ░     ░  ░░ ░            ░  ░       ░   
                     ░                                  ░                             
         """
-  print(ascii)
+  print(Fore.LIGHTMAGENTA_EX+ascii)
