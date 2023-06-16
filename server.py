@@ -1,9 +1,19 @@
 import cv2
 import socket
 import pickle
+import os
 import struct
+from colorama import Fore, init
 from module import banner
 
+# Setting the autoreset True
+init(autoreset=True)
+
+# Printing the banner
+os.system("clear||cls")
+banner.ban()
+
+print(Fore.BLUE+"[*]"+" Creating a socket object")
 # Create a socket object
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -11,17 +21,17 @@ server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_ip = '0.0.0.0'
 port = 9999
 
-# Connect to the server
+# bind the server
 server_socket.bind((server_ip, port))
 
 # Listen for incoming connections
 server_socket.listen(5)
 
-print("Waiting for a client to connect...")
+print(Fore.BLUE+"[*]"+" Waiting for a client to connect...")
 
 # Accept a client connection
 client_socket, addr = server_socket.accept()
-print('Connected to:', addr)
+print(Fore.BLUE+"[*]"+' Got a connection from ', addr)
 
 # Initialize a variable to store the received frame
 data = b""
