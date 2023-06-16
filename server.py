@@ -13,7 +13,7 @@ init(autoreset=True)
 os.system("clear||cls")
 banner.ban()
 
-print(Fore.BLUE+"[*]"+" Creating a socket object")
+print(Fore.BLUE+"[*]"+Fore.RESET+" Creating a socket object")
 # Create a socket object
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -27,11 +27,11 @@ server_socket.bind((server_ip, port))
 # Listen for incoming connections
 server_socket.listen(5)
 
-print(Fore.BLUE+"[*]"+" Waiting for a client to connect...")
+print(Fore.BLUE+"[*]"+Fore.RESET+" Waiting for a client to connect...")
 
 # Accept a client connection
 client_socket, addr = server_socket.accept()
-print(Fore.BLUE+"[*]"+' Got a connection from ', addr)
+print(Fore.BLUE+"[*]"+Fore.RESET+' Got a connection from ', addr)
 
 # Initialize a variable to store the received frame
 data = b""
