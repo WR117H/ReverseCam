@@ -51,7 +51,7 @@ if not os.path.exists(save_dir):
 
 frame_width = 0  # Width of the received frames
 frame_height = 0  # Height of the received frames
-fps = 45  # Frames per second of the output video
+fps = 15  # Frames per second of the output video
 output_video_path = "video.mp4"
 
 video_writer = None
