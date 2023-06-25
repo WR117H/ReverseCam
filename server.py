@@ -16,11 +16,15 @@ banner.ban()
 print(Fore.BLUE + "[*]" + Fore.RESET + " Creating a socket object")
 # Create a socket object
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# Argument parsing
+parser = argparse.ArgumentParser(description="Server for receiving webcam frames")
+parser.add_argument("--ip", type=str, default="0.0.0.0", help="Server IP address")
+parser.add_argument("--port", type=int, default=9999, help="Server port number")
+args = parser.parse_args()
 
 # Replace 'SERVER_IP' with the IP address of the server
-server_ip = '0.0.0.0'
-port = 9999
-
+server_ip = args.ip
+port = args.port
 # bind the server
 server_socket.bind((server_ip, port))
 
