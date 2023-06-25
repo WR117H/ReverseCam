@@ -1,6 +1,7 @@
 import cv2
 import socket
 import pickle
+import argparse
 import os
 import struct
 from colorama import Fore, init
