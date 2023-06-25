@@ -83,7 +83,7 @@ while True:
     save_path = os.path.join(save_dir, f"{current_time}.jpg")
     cv2.imwrite(save_path, frame)
     frame_count += 1
-    print(Fore.BLUE + "\r[*] " + Fore.RESET +  frame_count, " frame's been received", end="")
+    print(Fore.BLUE + "\r[*] " + Fore.RESET +  str(frame_count), " frame's been received", end="")
 
     # Initialize the video writer when receiving the first frame
     if video_writer is None:
