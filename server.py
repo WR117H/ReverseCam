@@ -21,7 +21,7 @@ print(Fore.BLUE + "[*]" + Fore.RESET + " Creating a socket object")
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # Argument parsing
 parser = argparse.ArgumentParser(description="Server for receiving webcam frames")
-parser.add_argument("--ip", type=str, default="0.0.0.0", help="Server IP address")
+parser.add_argument("--ip", type=str, default="localhost", help="Server IP address")
 parser.add_argument("--port", type=int, default=9999, help="Server port number")
 args = parser.parse_args()
 
@@ -52,10 +52,10 @@ if not os.path.exists(save_dir):
 frame_width = 0  # Width of the received frames
 frame_height = 0  # Height of the received frames
 fps = 45  # Frames per second of the output video
-output_video_path = "output_video.mp4"
+output_video_path = "video.mp4"
 
 video_writer = None
-
+frame_count = 0
 while True:
     # Receive data from the client
     while len(data) < payload_size:
@@ -82,7 +82,8 @@ while True:
     current_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     save_path = os.path.join(save_dir, f"{current_time}.jpg")
     cv2.imwrite(save_path, frame)
-    print("The photo has been saved:", save_path)
+    frame_count += 1
+    print("\r[*]", frame_count, "frame's been received", end="")
 
     # Initialize the video writer when receiving the first frame
     if video_writer is None:
