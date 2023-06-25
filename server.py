@@ -13,7 +13,7 @@ init(autoreset=True)
 os.system("clear||cls")
 banner.ban()
 
-print(Fore.BLUE+"[*]"+Fore.RESET+" Creating a socket object")
+print(Fore.BLUE + "[*]" + Fore.RESET + " Creating a socket object")
 # Create a socket object
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -27,15 +27,27 @@ server_socket.bind((server_ip, port))
 # Listen for incoming connections
 server_socket.listen(5)
 
-print(Fore.BLUE+"[*]"+Fore.RESET+" Waiting for a client to connect...")
+print(Fore.BLUE + "[*]" + Fore.RESET + " Waiting for a client to connect...")
 
 # Accept a client connection
 client_socket, addr = server_socket.accept()
-print(Fore.BLUE+"[*]"+Fore.RESET+' Got a connection from ', addr)
+print(Fore.BLUE + "[*]" + Fore.RESET + ' Got a connection from ', addr)
 
 # Initialize a variable to store the received frame
 data = b""
 payload_size = struct.calcsize("Q")
+
+# Create a directory to save the frames
+save_dir = "frames"
+if not os.path.exists(save_dir):
+    os.makedirs(save_dir)
+
+frame_width = 0  # Width of the received frames
+frame_height = 0  # Height of the received frames
+fps = 25  # Frames per second of the output video
+output_video_path = "output_video.mp4"
+
+video_writer = None
 
 while True:
     # Receive data from the client
@@ -59,8 +71,22 @@ while True:
     data = data[msg_size:]
     frame = pickle.loads(frame_data)
 
-    # Display the received frame
-    cv2.imshow('Server - Receiving Webcam', frame)
+    # Save the frame as an image with timestamp
+    current_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    save_path = os.path.join(save_dir, f"{current_time}.jpg")
+    cv2.imwrite(save_path, frame)
+    print("The photo has been saved:", save_path)
+
+    # Initialize the video writer when receiving the first frame
+    if video_writer is None:
+        frame_height, frame_width, _ = frame.shape
+        video_writer = cv2.VideoWriter(output_video_path,
+                                       cv2.VideoWriter_fourcc(*"mp4v"),
+                                       fps, (frame_width, frame_height))
+
+    # Write the frame to the video file
+    video_writer.write(frame)
+
     if cv2.waitKey(1) == 13:  # Press 'Enter' to exit
         break
 
@@ -68,3 +94,10 @@ while True:
 cv2.destroyAllWindows()
 client_socket.close()
 server_socket.close()
+
+# Release the video writer
+if video_writer is not None:
+    video_writer.release()
+
+# Convert the saved frames to a video
+image_files = [os.path
