@@ -100,4 +100,19 @@ if video_writer is not None:
     video_writer.release()
 
 # Convert the saved frames to a video
-image_files = [os.path
+# Convert the saved frames to a video
+image_files = [os.path.join(save_dir, f) for f in os.listdir(save_dir) if f.endswith(".jpg")]
+image_files.sort()  # Sort the image files in ascending order
+
+frame_width = 0
+frame_height = 0
+
+for image_file in image_files:
+    frame = cv2.imread(image_file)
+    if frame_width == 0 and frame_height == 0:
+        frame_height, frame_width, _ = frame.shape
+        video_writer = cv2.VideoWriter(output_video_path, cv2.VideoWriter_fourcc(*"mp4v"), fps, (frame_width, frame_height))
+    video_writer.write(frame)
+
+video_writer.release()
+print("The frames have been converted to a video:", output_video_path)
