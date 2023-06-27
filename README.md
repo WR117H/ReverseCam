@@ -8,12 +8,15 @@ First install Reverse cam using git
 ```
 git clone https://github.com/WR117H/ReverseCam.git
 ```
-Then head to the folder and install the requirements using pip
+Then head to the folder
+```
+cd ReverseCam
+```
+Install the requirements using pip
 ```
 pip install -r requirements.txt
 ```
-Change the client's file addresses to whatever you want
-
+Change the client's file addresses to whatever you want . . .
 
 # Server useage
 | Argument | Useage |
