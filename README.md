@@ -6,7 +6,7 @@ A tool for gathering webcam's frames with reverse socket connection
 # Setup
 First install Reverse cam using git
 ```
-https://github.com/WR117H/ReverseCam.git
+git clone https://github.com/WR117H/ReverseCam.git
 ```
 Then head to the folder and install the requirements using pip
 ```
