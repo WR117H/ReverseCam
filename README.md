@@ -15,13 +15,18 @@ pip install -r requirements.txt
 Change the client's file addresses to whatever you want
 
 
-# Useage
+# Server useage
 | Argument | Useage |
 | --- | --- |
 | `--ip` | Enter the server's ip address |
 | `--port` | Enter the server's port of ip address |
 
 # Examples
+Server:
 ```
 python server.py --ip 127.0.0.1 --port 9999
+```
+Client:
+```
+python client.py
 ```
